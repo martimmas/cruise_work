@@ -13,8 +13,10 @@ cruise       = 'SD041';
 
 % section_name = 'kang_outer_sill';      stations = 9:15;
 % section_name = 'kang_mouth';           stations = 17:25;
-% section_name = 'kang_trough';          stations = [60 16 12 7 57 8]; % alt: 20 or 60
 % section_name = 'kang_west';            stations = [62 63 59 66 67 58 9];
+% section_name = 'kang_east';            stations = [26 82 81 15];
+section_name = 'kang_trough_all'; stations = [60 16 12 7 57 8 85 86 87 88 90 89 3];
+% section_name = 'kang_trough';      stations = [60 57 85 86 87 88 90 89];
 % section_name = 'ryberg_across_inner';  stations = 29:33;
 % section_name = 'ryberg_across_mid';    stations = 37:41;
 % section_name = 'ryberg_along';         stations = [28 27 31 35 36 39 34 42];
@@ -23,15 +25,12 @@ cruise       = 'SD041';
 % section_name = 'choco_across';         stations = [50 53 51 52];
 % section_name = 'choco_along';          stations = [50 54:56];
 % section_name = 'mooring_trough';       stations = [79 71 73 72 78 76 77];
-% section_name = 'kang_east';            stations = [26 82 81 15];
-section_name = 'onshore_offshore_all'; stations = [60 16 12 7 57 8 85 86];
-% section_name = 'onshore_offshore';      stations = [60 57 85 86]; % are 84 and 85 at the same site?
 
 %% Customisables for each panel
 desired_vars = {'potemp1','salin1','oxygen','ladcp_u','ladcp_v'};
 cmap_var = {'thermal','haline','oxy','balance','balance'};
 label_var = {'Temperature (^oC)','Salinity','Oxygen (\mumol l^{-1})','Zonal velocity (m s^{-1} )','Meridional velocity (m s^{-1})'};
-clim_var = {[-2, 6],[28,35],[280 360],[-0.5 0.5],[-0.5,0.5]};
+clim_var = {[-2.5, 10],[28.5,35.5],[245 360],[-0.5 0.5],[-0.5,0.5]};
 
 %% loads up casts
 
