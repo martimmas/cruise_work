@@ -2,13 +2,13 @@ addpath(genpath('/Users/mmeb1/scripts_import/matlab'))
 addpath(genpath('/Volumes/leg/work/scientific_work_areas/ctd'))
 % Remember to set up paths in CTDvarn.m!
 clearvars; close all
-i_cast=86; % TODO: 84-86 SAVE FIGURES FROM INTERMEDIATE STEPS! NO 83?! Cast 85 has a very noisy TS profile
+i_cast=90; % TODO: Casts 85+ have a very noisy TS1 profile, considerable drift in salinity
 ctdreadGEN(i_cast)
 editctdGEN(i_cast)
 run batch_ctdGEN % wraps deriveGEN, onehzctdGEN, splitcastGEN, fallrateGEN, and gridctdGEN
 ctdplotGEN(aa)
 
-for i=84:86
+for i=88:89
     close all;
     ctdplotGEN(i)
 end
@@ -16,7 +16,7 @@ close all;
 % casts 76 to 78 might need to be reprocessed
 
 
-% (done up to 063)
+% (done up to 076)
 run batch_botGEN % creates bottle file and then reads sbe35; encapsulates makebotGEN, sb35readGEN, readsalGEN, addsalGEN, salcalGEN, mergebotGEN
 
 run plot_calibration % checks the T, C, and oxygen sensor comparisons
