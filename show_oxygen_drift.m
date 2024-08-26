@@ -2,7 +2,6 @@ clearvars
 folder_ctd   = '/Volumes/leg/work/scientific_work_areas/ctd/BASproc';
 cruise       = 'SD041';
 
-
 %% loads up casts
 
 ctds=load_uea_ctds(folder_ctd,cruise,1);
@@ -10,7 +9,7 @@ ctds=renameCTDfields(ctds,{'oxygen1_umol_kg','oxygen1'},{'oxygen2_umol_kg','oxyg
                           {'fluor_ug_l','fluor'},{'BeamTrans','trans'});
 
 %% Plots
-figure;
+figure('Position',[50 50 900 400]);
 ht = tiledlayout('horizontal');
 for i_cast=1:length(ctds)
     o2_sat1 = gsw_O2sol(ctds(i_cast).salin1,ctds(i_cast).potemp1,ctds(i_cast).depth,ctds(i_cast).lon,ctds(i_cast).lat);
@@ -33,10 +32,11 @@ for i_cast=1:length(ctds)
     xlabel('O2 % saturation difference');
     set(gca,'ydir','reverse','fontsize',14)
 end
-ylabel(ht,'Pressure (dbar)')
+ylabel(ht,'Pressure (dbar)','fontsize',14)
 
 hcb = colorbar;
 colormap(cmocean('thermal'));
+ylabel(hcb,'Time')
 % xlim([0 0.1])
 
 
