@@ -36,13 +36,15 @@ if exist('ctdt1_corrected','var')
     scatter(ctdt2_filtered-sb35temp2,botp_filtered2,40,"red",'o');
     scatter(ctdt1_corrected-sb35temp1,botp_filtered1,40,"blue",'filled','o','MarkerFaceAlpha',0.5);
     scatter(ctdt2_corrected-sb35temp2,botp_filtered2,40,"red",'filled','o','MarkerFaceAlpha',0.5);
-    vline(0,'--k')
-    text(0.02,0.10,sprintf('Sensor1 offset: %.4f deg.C',offset1_temp),'Units','normalized','fontsize',14);
-    text(0.02,0.03,sprintf('Sensor2 offset: %.4f deg.C',offset2_temp),'Units','normalized','fontsize',14);
     ylabel('Pressure (dbar)')
     xlabel('Temperature offsets (^oC)');
     xlim([-0.1 0.1])
+    ylim([0 1600])
+    vline(0,'--k')
     set(gca,'ydir','reverse','fontsize',14)
+    xbnds = xlim; ybnds = ylim;
+    text(xbnds(1)*0.95,ybnds(2)*0.90,sprintf('Sensor 1 offset: %.4f deg.C',offset1_temp),'fontsize',14);
+    text(xbnds(1)*0.95,ybnds(2)*0.96,sprintf('Sensor 2 offset: %.4f deg.C',offset2_temp),'fontsize',14);
 end
 
 % Conductivity calibration
@@ -60,17 +62,19 @@ if exist('ctdc1_corrected','var')
     scatter(botc_filtered2-ctdc2_filtered,botpress_filtered2,40,"red",'o');
     scatter(botc_filtered1-ctdc1_corrected,botpress_filtered1,40,"blue",'filled','o','MarkerFaceAlpha',0.5);
     scatter(botc_filtered2-ctdc2_corrected,botpress_filtered2,40,"red",'filled','o','MarkerFaceAlpha',0.5);
-    vline(0,'--k')
-    text(0.02,0.10,sprintf('Sensor1 offset: %.4f',offset1_cond),'Units','normalized','fontsize',14);
-    text(0.02,0.03,sprintf('Sensor2 offset: %.4f',offset2_cond),'Units','normalized','fontsize',14);
     ylabel('Pressure (dbar)')
     xlabel('Conductivity offsets (mS/cm)');
     xlim([-0.1 0.1])
+    ylim([0 1600])
+    vline(0,'--k')
     set(gca,'ydir','reverse','fontsize',14)
+    xbnds = xlim; ybnds = ylim;
+    text(xbnds(1)*0.95,ybnds(2)*0.90,sprintf('Sensor 1 offset: %.4f',offset1_cond),'fontsize',14);
+    text(xbnds(1)*0.95,ybnds(2)*0.96,sprintf('Sensor 2 offset: %.4f',offset2_cond),'fontsize',14);
 end
 
 % exportgraphics(gcf,sprintf("%s/calibration_temp_cond.png",folder_figs),'Resolution',150)
 %% Oxygen calibration
-run get_oxygen_calibration
+run show_oxygen_drift
 
 % exportgraphics(gcf,sprintf("%s/drift_oxygen.png",folder_figs),'Resolution',150)
