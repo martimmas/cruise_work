@@ -4,7 +4,7 @@ cruise       = 'SD041';
 
 %% loads up casts
 
-ctds=load_uea_ctds(folder_ctd,cruise,1);
+ctds=load_uea_ctds(folder_ctd,cruise,0,1);
 ctds=renameCTDfields(ctds,{'oxygen1_umol_kg','oxygen1'},{'oxygen2_umol_kg','oxygen2'},...
                           {'fluor_ug_l','fluor'},{'BeamTrans','trans'});
 
