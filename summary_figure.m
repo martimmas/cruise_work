@@ -15,11 +15,12 @@ dir_out='/Volumes/leg/work/scientific_work_areas/ctd/BASproc';
 dir_figs=[dir_out,'/../summary_plots/profiles'];
 
 cruise='SD041';
-n_stations_to_plot=6;
+% n_stations_to_plot=6;
 % order_station_ids = [37 38 35 39 40]; % reorder the section
 % order_station_ids = [28 31 35 36 37 42]; % transect along fjord
 % order_station_ids = [50 53 51 52];
 % order_station_ids = 58:63;
+order_station_ids = [85 69 61 27 43 52];
 
 %% Finding what to plot
 
@@ -36,7 +37,8 @@ if exist('file_waypoints','var')
 end
 
 % Finds all processed CTD files
-matfiles = dir(fullfile(dir_out,[cruise,'_ctd_*.2db.mat']));
+% matfiles = dir(fullfile(dir_out,[cruise,'_ctd_*.2db.mat']));
+matfiles = dir(fullfile(dir_out,[cruise,'_ctd_*_cal.2db.mat']));
 % [~,order_station_ids] = sort([matfiles.datenum]);
 % if exist('order_station_ids','var')
 %     matfiles = matfiles(order_station_ids);
@@ -69,7 +71,7 @@ eval(sprintf("lcolor=%s,length(stations));",color_scheme_function));
 %% Starts plotting
 figure('Position',[30 30 1200 700])
 ht = tiledlayout('flow');
-title(ht,sprintf("CTD summary: %s",datetime("now","Format","dd-MMM HH:mm")),'fontsize',16)
+% title(ht,sprintf("CTD summary: %s",datetime("now","Format","dd-MMM HH:mm")),'fontsize',16)
 station_handles = [];
 station_names   = {};
 lons = NaN(size(stations));
@@ -134,16 +136,16 @@ for i=1:length(stations)
     set(gca,'ydir','reverse','xaxislocation','top','fontsize',fsize)
     ylabel(gca,'Pressure (dbar)')
     xlabel('Oxygen (\mu mol kg^{-1})')
-    if exist('oxygen2_umol_kg','var')
-        hp1 = plot(oxygen1_umol_kg,press,'-k','linewidth',1.5);
-        hp2 = plot(oxygen2_umol_kg,press,':k','linewidth',1.5);
-    end
+    % if exist('oxygen2_umol_kg','var')
+    %     hp1 = plot(oxygen1_umol_kg,press,'-k','linewidth',1.5);
+    %     hp2 = plot(oxygen2_umol_kg,press,':k','linewidth',1.5);
+    % end
     plot(oxygen1_umol_kg,press,'linestyle','-','Color',station_color,'LineWidth',2)
-    if exist('oxygen2_umol_kg','var')
-        plot(oxygen2_umol_kg,press,'linestyle',':','Color',station_color,'LineWidth',2)
-    end
+    % if exist('oxygen2_umol_kg','var')
+    %     plot(oxygen2_umol_kg,press,'linestyle',':','Color',station_color,'LineWidth',2)
+    % end
     % Legend indicating sensors if more than 1
-    if exist('hp2','var'), legend(gca,[hp1,hp2],{'sensor 1','sensor 2'},'location','southeast'); end
+    % if exist('hp2','var'), legend(gca,[hp1,hp2],{'sensor 1','sensor 2'},'location','southeast'); end
     
     % Plots theta-S diagram
     nexttile(5); box on; hold on

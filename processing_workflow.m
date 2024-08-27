@@ -1,5 +1,5 @@
 addpath(genpath('/Users/mmeb1/scripts_import/matlab'))
-addpath(genpath('/Volumes/leg/work/scientific_work_areas/ctd'))
+addpath(genpath('/Volumes/leg/work/scientific_work_areas/ctd/ctd-data-processing'))
 % Remember to set up paths in CTDvarn.m!
 clearvars; close all
 i_cast=90; % TODO: Casts 85+ have a very noisy TS1 profile, considerable drift in salinity
@@ -16,20 +16,9 @@ close all;
 % casts 76 to 78 might need to be reprocessed
 
 
-% (done up to 076)
+% done up to 90, BUT: cast 77 is messed up... skipped 83 and 84; 89 and 90 might be corrupt
 run batch_botGEN % creates bottle file and then reads sbe35; encapsulates makebotGEN, sb35readGEN, readsalGEN, addsalGEN, salcalGEN, mergebotGEN
 
 run plot_calibration % checks the T, C, and oxygen sensor comparisons
-
-% temperature and conductivity: median along depth of the offset that
-% minimises RMSE between CTD sensors and SBE35 and bottle salinity,
-% respectively. The median was chosen as to not overcorrect values far from
-% the sharp gradient regions of the water column, which tend to deviate the
-% most between quantities
-
-% temp1   -= 9e-4; temp2   -= 2.1e-3;
-% cond1   += 9e-4; cond2   += 7.3e-3;
-% oxygen1 -= 10;   oxygen2 += 2;       (based on Povl's estimate). Note that there is a significant drift for both sensors, especially for sensor 1!
-% add offsets to cruise-specific switch in salcalappGEN.m
 
 run batch_calGEN % batch (re)processes the CTD data with the callibrations
