@@ -8,7 +8,7 @@ editctdGEN(i_cast)
 run batch_ctdGEN % wraps deriveGEN, onehzctdGEN, splitcastGEN, fallrateGEN, and gridctdGEN
 ctdplotGEN(aa)
 
-for i=88:89
+for i=84:90
     close all;
     ctdplotGEN(i)
 end

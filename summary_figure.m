@@ -180,7 +180,8 @@ end
 % Plotting the base map
 nexttile(6); box on; hold on
 hproj= m_proj('mercator','lon',minmax(lons)+[-padding_lon padding_lon],'lat',minmax(lats)+[-padding_lat padding_lat]);
-m_gshhs_i('color','k','linewidth',1.5);
+% m_gshhs_i('color','k','linewidth',1.5);
+m_usercoast('greenland_coast.mat','color','k','linewidth',1.5);
 m_gebco2022_contour([-1000 -500],'k--');
 m_grid;
 xlabel('Longitude')
